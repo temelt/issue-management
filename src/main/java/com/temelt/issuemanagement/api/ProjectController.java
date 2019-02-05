@@ -2,6 +2,7 @@ package com.temelt.issuemanagement.api;
 
 import com.temelt.issuemanagement.dto.ProjectDto;
 import com.temelt.issuemanagement.service.impl.ProjectServiceImpl;
+import com.temelt.issuemanagement.util.ApiPaths;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import javax.validation.Valid;
  * Created by temelt on 4.02.2019.
  */
 @RestController
-@RequestMapping("/project")
+@RequestMapping(ApiPaths.ProjectCtrl.CTRL)
 public class ProjectController {
 
     private final ProjectServiceImpl projectServiceImpl;
