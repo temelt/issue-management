@@ -1,7 +1,7 @@
 package com.temelt.issuemanagement.service;
 
-import com.temelt.issuemanagement.entity.IssueHistory;
-import org.springframework.data.domain.Page;
+import com.temelt.issuemanagement.dto.IssueHistoryDto;
+import com.temelt.issuemanagement.util.TPage;
 import org.springframework.data.domain.Pageable;
 
 /**
@@ -9,12 +9,12 @@ import org.springframework.data.domain.Pageable;
  */
 public interface IssueHistoryService {
 
-    IssueHistory save(IssueHistory issueHistory);
+    IssueHistoryDto save(IssueHistoryDto issueHistory);
 
-    IssueHistory getById(Long id);
+    IssueHistoryDto getById(Long id);
 
-    Page<IssueHistory> getAllPageable(Pageable pageable);
+    TPage<IssueHistoryDto> getAllPageable(Pageable pageable);
 
-    Boolean delete(IssueHistory issueHistory);
+    Boolean delete(IssueHistoryDto issueHistory);
 
 }

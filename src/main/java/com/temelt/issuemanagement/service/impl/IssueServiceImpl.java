@@ -16,21 +16,21 @@ import java.util.Arrays;
  * Created by temelt on 4.02.2019.
  */
 @Service
-public class IssueServiceImpl implements IssueService{
+public class IssueServiceImpl implements IssueService {
 
     private final IssueRepository issueRepository;
     private final ModelMapper modelMapper;
 
-    public IssueServiceImpl(IssueRepository issueRepository,ModelMapper modelMapper){
+    public IssueServiceImpl(IssueRepository issueRepository, ModelMapper modelMapper) {
         this.issueRepository = issueRepository;
         this.modelMapper = modelMapper;
     }
 
     @Override
-    public IssueDto save(IssueDto issue){
+    public IssueDto save(IssueDto issue) {
         // Bussiness Logic
 
-        if(issue.getDate()==null){
+        if (issue.getDate() == null) {
             throw new IllegalArgumentException("Issue Date cannot be null");
         }
 
@@ -45,14 +45,14 @@ public class IssueServiceImpl implements IssueService{
     @Override
     public IssueDto getById(Long id) {
         Issue issue = issueRepository.getOne(id);
-        return modelMapper.map(issue,IssueDto.class);
+        return modelMapper.map(issue, IssueDto.class);
     }
 
     @Override
     public TPage<IssueDto> getAllPageable(Pageable pageable) {
-        Page<Issue> data= issueRepository.findAll(pageable);
-        TPage<IssueDto> respnose= new TPage<IssueDto>();
-        respnose.setStat(data,Arrays.asList(modelMapper.map(data.getContent(), IssueDto[].class)));
+        Page<Issue> data = issueRepository.findAll(pageable);
+        TPage<IssueDto> respnose = new TPage<IssueDto>();
+        respnose.setStat(data, Arrays.asList(modelMapper.map(data.getContent(), IssueDto[].class)));
         return respnose;
     }
 
