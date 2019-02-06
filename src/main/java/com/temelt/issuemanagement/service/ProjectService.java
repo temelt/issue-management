@@ -15,7 +15,7 @@ public interface ProjectService {
 
     ProjectDto getById(Long id);
 
-    List<ProjectDto> getByProjectCode(String projectCode);
+    ProjectDto getByProjectCode(String projectCode);
 
     List<ProjectDto> getByProjectCodeContains(String projectCode);
 

@@ -1,13 +1,9 @@
 package com.temelt.issuemanagement.api;
 
 import com.temelt.issuemanagement.dto.ProjectDto;
-import com.temelt.issuemanagement.service.ProjectService;
 import com.temelt.issuemanagement.service.impl.ProjectServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by temelt on 4.02.2019.
@@ -18,7 +14,7 @@ public class ProjectController {
 
     private final ProjectServiceImpl projectServiceImpl;
 
-    public ProjectController(ProjectServiceImpl projectServiceImpl){
+    public ProjectController(ProjectServiceImpl projectServiceImpl) {
         this.projectServiceImpl = projectServiceImpl;
     }
 
@@ -27,4 +23,10 @@ public class ProjectController {
         ProjectDto projectDto = projectServiceImpl.getById(id);
         return ResponseEntity.ok(projectDto);
     }
+
+    @PostMapping
+    public ResponseEntity<ProjectDto> createProject(@RequestBody ProjectDto project){
+        return ResponseEntity.ok(projectServiceImpl.save(project));
+    }
+
 }
