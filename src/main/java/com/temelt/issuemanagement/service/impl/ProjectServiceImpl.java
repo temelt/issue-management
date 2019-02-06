@@ -32,7 +32,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         Project projectCheck = projectRepository.getByProjectCode(project.getProjectCode());
 
-        if(projectCheck!=null)
+        if (projectCheck != null)
             throw new IllegalArgumentException("Project Code Already Exist");
 
         Project p = modelMapper.map(project, Project.class);
@@ -77,12 +77,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectDto update(Long id, ProjectDto project) {
-        Project projectDb= projectRepository.getOne(id);
-        if(projectDb == null)
+        Project projectDb = projectRepository.getOne(id);
+        if (projectDb == null)
             throw new IllegalArgumentException("Project Does Not Exist ID:" + id);
 
-        Project projectCheck = projectRepository.getByProjectCodeAndIdNot(project.getProjectCode(),id);
-        if(projectCheck!=null)
+        Project projectCheck = projectRepository.getByProjectCodeAndIdNot(project.getProjectCode(), id);
+        if (projectCheck != null)
             throw new IllegalArgumentException("Project Code Already Exist");
 
         projectDb.setProjectCode(project.getProjectCode());
