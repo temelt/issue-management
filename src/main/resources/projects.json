@@ -1,0 +1,17 @@
+[
+  {
+    "_class": "com.temelt.issuemanagement.entity.Project",
+    "projectCode" : "IM",
+    "projectName": "Issue Management Project"
+  },
+  {
+    "_class": "com.temelt.issuemanagement.entity.Project",
+    "projectCode" : "ERP-S",
+    "projectName": "ERP Project for Sales"
+  },
+  {
+    "_class": "com.temelt.issuemanagement.entity.Project",
+    "projectCode" : "CRM-S",
+    "projectName": "CRM Project for Sales"
+  }
+]
