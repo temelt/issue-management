@@ -16,7 +16,7 @@ public class IssueManagementApplication {
     @Bean
     public ModelMapper getModelMapper() {
         ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration() .setMatchingStrategy(MatchingStrategies.STRICT);
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return modelMapper;
     }
 }
