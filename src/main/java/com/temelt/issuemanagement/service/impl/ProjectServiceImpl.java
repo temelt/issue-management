@@ -70,4 +70,26 @@ public class ProjectServiceImpl implements ProjectService {
         return null;
     }
 
+    public Boolean delete(Long id) {
+        projectRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public ProjectDto update(Long id, ProjectDto project) {
+        Project projectDb= projectRepository.getOne(id);
+        if(projectDb == null)
+            throw new IllegalArgumentException("Project Does Not Exist ID:" + id);
+
+        Project projectCheck = projectRepository.getByProjectCodeAndIdNot(project.getProjectCode(),id);
+        if(projectCheck!=null)
+            throw new IllegalArgumentException("Project Code Already Exist");
+
+        projectDb.setProjectCode(project.getProjectCode());
+        projectDb.setProjectName(project.getProjectName());
+
+        projectRepository.save(projectDb);
+        return modelMapper.map(projectDb, ProjectDto.class);
+    }
+
 }
