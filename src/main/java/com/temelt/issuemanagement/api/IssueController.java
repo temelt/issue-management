@@ -32,19 +32,19 @@ public class IssueController {
     }
 
     @PostMapping
-    @ApiOperation(value = "Get By Id Operation", response = IssueDto.class)
+    @ApiOperation(value = "Create Operation", response = IssueDto.class)
     public ResponseEntity<IssueDto> createProject(@Valid @RequestBody IssueDto issue){
         return ResponseEntity.ok(issueServiceImpl.save(issue));
     }
 
     @PutMapping("/{id}")
-    @ApiOperation(value = "Get By Id Operation", response = IssueDto.class)
+    @ApiOperation(value = "Update Operation", response = IssueDto.class)
     public ResponseEntity<IssueDto> updateProject(@PathVariable(value = "id", required = true) Long id, @Valid @RequestBody IssueDto issue){
         return ResponseEntity.ok(issueServiceImpl.update(id,issue));
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "Get By Id Operation", response = Boolean.class)
+    @ApiOperation(value = "Delete Operation", response = Boolean.class)
     public ResponseEntity<Boolean> delete(@PathVariable(value = "id", required = true) Long id){
         return  ResponseEntity.ok(issueServiceImpl.delete(id));
     }
