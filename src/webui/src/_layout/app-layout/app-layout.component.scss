@@ -1,0 +1,74 @@
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-dark {
+    .navbar-brand {
+        color: #fff;
+    }
+}
+
+.content-area {
+    margin-left: 220px;
+    transition: margin 0.5s;
+}
+
+@media only screen and (min-width: 768px) {
+    .content-area {
+        &.collapsed {
+            margin-left: 70px;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .content-area {
+        margin-left: 0px;
+    }
+    &.collapsed {
+        filter: blur(3px);
+        transition: filter 0.5s;
+    }
+}
+ 
+:host {
+    ::ng-deep {
+        .overflow-horizontal-scroll {
+            white-space: nowrap;
+            overflow: auto;
+            width: 100%;
+        }
+        .content-wrapper {
+            background-color: #fff;
+            min-height: calc( 100vh - 200px);
+            padding: 10px;
+            margin: 10px;
+        }
+        .dropdown-menu {
+            &.dropdown-lg {
+                min-width: 20rem;
+            }
+            &.dropdown-xl {
+                min-width: 25rem;
+            }
+        }
+        .dropdown-toggle::after {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 0.255em;
+            vertical-align: 0.255em;
+            vertical-align: middle;
+            content: "";
+            border-top: 0.3em solid;
+            border-right: 0.3em solid transparent;
+            border-bottom: 0;
+            border-left: 0.3em solid transparent;
+        }
+    }
+}
