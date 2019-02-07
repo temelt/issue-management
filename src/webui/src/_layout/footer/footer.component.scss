@@ -1,0 +1,19 @@
+.footer {
+  margin-left: 235px;
+  padding: 15px;
+  position: relative;
+}
+
+@media screen and (max-width: 992px) {
+  .footer {
+      margin-left: 0px !important;
+  }
+}
+
+@media print {
+  .footer {
+      margin-top: 0px !important;
+      margin-left: 0px !important;
+  }
+}
+

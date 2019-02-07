@@ -1,0 +1,47 @@
+
+<aside class="sidebar" [ngClass]="{collapseClass: isActive}">
+  <nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand m-0 py-2 brand-title" href="#">IssueManagement</a>
+    <span></span>
+    <a class="navbar-brand py-2 material-icons toggle-sidebar" (click)="toggleSidebar()">menu</a>
+  </nav>
+
+  <nav class="navigation">
+    <ul>
+      <li class="active">
+        <a routerLink="/dashboard"  routerLinkActive="active" >
+          <span class="nav-icon material-icons">public</span>
+          Dashboard
+        </a>
+      </li>
+
+      <li [ngClass]="{'open': showMenu === 'project'}">
+      <a (click)="addExpandClass('project')" title="Project">
+        <span class="nav-icon material-icons">supervisor_account</span> Project
+        <span class="toogle-sub-nav material-icons">keyboard_arrow_right</span></a>
+      <ul class="sub-nav" [ngStyle]="{'display':(showMenu === 'author')?'block':'none'}">
+        <li>
+          <a routerLink="/project"routerLinkActive="active">
+            <span><span class="nav-icon material-icons">list</span> &nbsp;&nbsp;&nbsp;Project List</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+      <li [ngClass]="{'open': showMenu === 'issue'}">
+        <a (click)="addExpandClass('issue')" title="Issue">
+          <span class="nav-icon material-icons">supervisor_account</span> Issue
+          <span class="toogle-sub-nav material-icons">keyboard_arrow_right</span></a>
+        <ul class="sub-nav" [ngStyle]="{'display':(showMenu === 'author')?'block':'none'}">
+          <li>
+            <a routerLink="/issue"routerLinkActive="active">
+              <span><span class="nav-icon material-icons">list</span> &nbsp;&nbsp;&nbsp;Issue List</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+
+  </nav>
+</aside>
