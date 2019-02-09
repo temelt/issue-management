@@ -8,6 +8,11 @@ import {HeaderComponent} from "./_layout/header/header.component";
 import {SidebarComponent} from "./_layout/sidebar/sidebar.component";
 import {BsDatepickerModule, BsDropdownModule, CollapseModule, ModalModule, PaginationModule} from "ngx-bootstrap";
 import {ToastNoAnimation, ToastNoAnimationModule, ToastrModule} from "ngx-toastr";
+import {ApiService} from "./services/api.service";
+import {ProjectService} from "./services/shared/project.service";
+import {IssueService} from "./services/shared/issue.service";
+import {HttpClientModule} from "@angular/common/http";
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 
 
 @NgModule({
@@ -20,7 +25,9 @@ import {ToastNoAnimation, ToastNoAnimationModule, ToastrModule} from "ngx-toastr
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
+    NgxDatatableModule,
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
@@ -33,7 +40,7 @@ import {ToastNoAnimation, ToastNoAnimationModule, ToastrModule} from "ngx-toastr
       autoDismiss: true
     }),
   ],
-  providers: [],
+  providers: [ApiService,ProjectService,IssueService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
