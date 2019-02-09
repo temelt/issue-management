@@ -19,7 +19,7 @@
       <a (click)="addExpandClass('project')" title="Project">
         <span class="nav-icon material-icons">supervisor_account</span> Project
         <span class="toogle-sub-nav material-icons">keyboard_arrow_right</span></a>
-      <ul class="sub-nav" [ngStyle]="{'display':(showMenu === 'author')?'block':'none'}">
+      <ul class="sub-nav" [ngStyle]="{'display':(showMenu === 'project')?'block':'none'}">
         <li>
           <a routerLink="/project"routerLinkActive="active">
             <span><span class="nav-icon material-icons">list</span> &nbsp;&nbsp;&nbsp;Project List</span>
@@ -32,7 +32,7 @@
         <a (click)="addExpandClass('issue')" title="Issue">
           <span class="nav-icon material-icons">supervisor_account</span> Issue
           <span class="toogle-sub-nav material-icons">keyboard_arrow_right</span></a>
-        <ul class="sub-nav" [ngStyle]="{'display':(showMenu === 'author')?'block':'none'}">
+        <ul class="sub-nav" [ngStyle]="{'display':(showMenu === 'issue')?'block':'none'}">
           <li>
             <a routerLink="/issue"routerLinkActive="active">
               <span><span class="nav-icon material-icons">list</span> &nbsp;&nbsp;&nbsp;Issue List</span>
