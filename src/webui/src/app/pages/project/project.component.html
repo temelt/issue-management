@@ -1,15 +1,16 @@
 <div class="content-wrapper">
 
   <ngx-datatable
+    class="bootstrap"
     [rows]="rows"
-    [columns]="[{id:'No'},{projectName:'Project Name'},{projectCode:'Project Code'}]"
+    [columns]="cols"
     [columnMode]="'force'"
     [headerHeight]="50"
     [footerHeight]="50"
     [rowHeight]="'auto'"
     [externalPaging]="true"
     [count]="page.totalElements"
-    [offset]="page.number"
+    [offset]="page.page"
     [limit]="page.size"
     (page)='setPage($event)'>
   </ngx-datatable>

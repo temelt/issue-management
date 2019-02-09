@@ -11,7 +11,11 @@ import {Project} from "../../common/project.model";
 export class ProjectComponent implements OnInit {
 
   page = new Page();
-  rows = new Array<Project>();
+  cols = [
+    {prop:'id',name:'No'},
+    {prop:'projectName',name:'Project Name',sortable:false},
+    {prop:'projectCode', name:'Project Code',sortable:false}];
+  rows = [];
 
   constructor(private projectService: ProjectService) {
 
@@ -23,10 +27,11 @@ export class ProjectComponent implements OnInit {
 
 
   setPage(pageInfo){
-    this.page.number = pageInfo.offset;
+    this.page.page = pageInfo.offset;
     this.projectService.getAll(this.page).subscribe(pagedData => {
       this.page.size = pagedData.size;
-      this.page.number = pagedData.number;
+      this.page.page = pagedData.page;
+      this.page.totalElements = pagedData.totalElements;
       this.rows = pagedData.content;
     });
   }
