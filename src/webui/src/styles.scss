@@ -1,0 +1,67 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~material-design-icons-iconfont/dist/material-design-icons.css";
+
+body {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #4E565A;
+  text-align: left;
+  background-color: #F5F7FA;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+$loader-img: url(/assets/images/loading.gif);
+.loading-indicator-block {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  background: $loader-img no-repeat center center;
+  z-index: 100;
+  .backdrop {
+    background: none !important;
+    border-radius: 0px !important;
+    margin-bottom: 10px;
+  }
+  .spinner-three-bounce {
+    display: none;
+  }
+}
+
+$theme-colors: (
+  "primary": #4B89FC,
+  "secondary": #6c757d
+);
+
+@media screen and (max-width: 992px) {
+  .push-right {
+    .sidebar {
+      left: 235px !important;
+    }
+  }
+}
