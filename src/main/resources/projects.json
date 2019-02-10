@@ -13,5 +13,20 @@
     "_class": "com.temelt.issuemanagement.entity.Project",
     "projectCode" : "CRM-S",
     "projectName": "CRM Project for Sales"
+  },
+  {
+    "_class": "com.temelt.issuemanagement.entity.Project",
+    "projectCode" : "CRM-B",
+    "projectName": "CRM Project for Bussiness"
+  },
+  {
+    "_class": "com.temelt.issuemanagement.entity.Project",
+    "projectCode" : "ERP-B",
+    "projectName": "ERP Project for Bussiness"
+  },
+  {
+    "_class": "com.temelt.issuemanagement.entity.Project",
+    "projectCode" : "TP",
+    "projectName": "Test Project"
   }
 ]

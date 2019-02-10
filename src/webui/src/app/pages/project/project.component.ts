@@ -18,7 +18,6 @@ export class ProjectComponent implements OnInit {
   rows = [];
 
   constructor(private projectService: ProjectService) {
-
   }
 
   ngOnInit() {
