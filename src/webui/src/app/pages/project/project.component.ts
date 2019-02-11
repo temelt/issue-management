@@ -3,6 +3,7 @@ import {ProjectService} from "../../services/shared/project.service";
 import {Page} from "../../common/page";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ConfirmationComponent} from "../../shared/confirmation/confirmation.component";
 
 @Component({
   selector: 'app-project',
@@ -64,5 +65,22 @@ export class ProjectComponent implements OnInit {
       this.page.totalElements = pagedData.totalElements;
       this.rows = pagedData.content;
     });
+  }
+
+
+  showDeleteConfirmation() : void{
+    const modal = this.modalService.show(ConfirmationComponent);
+    (<ConfirmationComponent>modal.content).showConfirmation(
+      'Test Header Content',
+      'Test Body Content'
+    );
+
+    (<ConfirmationComponent>modal.content).onClose.subscribe( result=>{
+     if(result===true){
+      console.log("Yes")
+     } else if(result===false){
+       console.log("No")
+     }}
+    );
   }
 }
