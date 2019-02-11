@@ -7,15 +7,15 @@ import {map} from "rxjs/internal/operators";
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService{
+export class UserService{
 
-  private PROJECT_PATH = "/project";
+  private USER_PATH = "/user";
 
   constructor(private apiService: ApiService ){
   }
 
   getAll(page) : Observable<any>{
-    return this.apiService.get(this.PROJECT_PATH+'/pagination',page).pipe(map(
+    return this.apiService.get(this.USER_PATH+'/pagination',page).pipe(map(
       res =>{
         if(res){
           return res;
@@ -28,7 +28,7 @@ export class ProjectService{
   }
 
   getById(id) : Observable<any>{
-    return this.apiService.get(this.PROJECT_PATH,id).pipe(map(
+    return this.apiService.get(this.USER_PATH,id).pipe(map(
       res =>{
         if(res){
           return res;
@@ -40,8 +40,8 @@ export class ProjectService{
     ));
   }
 
-  createProject(project) : Observable<any>{
-    return this.apiService.post(this.PROJECT_PATH,project).pipe(map(
+  createUser(user) : Observable<any>{
+    return this.apiService.post(this.USER_PATH ,user).pipe(map(
       res =>{
         if(res){
           return res;
@@ -54,7 +54,7 @@ export class ProjectService{
   }
 
   delete(id) : Observable<any>{
-    return this.apiService.delete(this.PROJECT_PATH +'/'+id).pipe(map(
+    return this.apiService.delete(this.USER_PATH,id).pipe(map(
       res =>{
         if(res){
           return res;

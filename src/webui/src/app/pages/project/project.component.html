@@ -17,10 +17,14 @@
     (page)='setPage($event)'>
   </ngx-datatable>
 
+  <ng-template #tplProjectDeleteCell let-row="row" let-value="value">
+    <button (click)="showProjectDeleteConfirmation(value)"><i class="material-icons">delete</i></button>
+  </ng-template>
+
   <div >
-    <button type="button" class="btn btn-primary" (click)="showDeleteConfirmation()">confirm</button>
     <button type="button" class="btn btn-primary" (click)="openModal(template)">{{'New' | translate}}</button>
   </div>
+
   <ng-template #template>
     <div class="modal-header">
       <h4 class="modal-title pull-left">{{'Project Detail' | translate}}</h4>
