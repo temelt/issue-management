@@ -1,3 +1,32 @@
 <div class="content-wrapper">
-  issue works!
+
+  <h3> {{ 'Issue List' | translate }} </h3>
+
+  <ngx-datatable
+    class="bootstrap"
+    [rows]="rows"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [externalPaging]="true"
+    [count]="page.totalElements"
+    [offset]="page.page"
+    [limit]="page.size"
+    (page)='setPage($event)'>
+    <ngx-datatable-column prop="id" name="No" sortable="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="description" name="Description" sortable="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="date" name="Issue Date" sortable="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="issueStatus" name="Status" sortable="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="assignee.nameSurname" name="Assignee" sortable="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="project.projectName" name="Project Name" sortable="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="project.manager.nameSurname" name="Project Manager" sortable="false"></ngx-datatable-column>
+    <ngx-datatable-column prop="id" name="Actions" sortable="false">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        <a href="/issue-detail/{{value}}">Detail</a>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+
 </div>
+

@@ -14,8 +14,8 @@ export class IssueService{
   constructor(private apiService: ApiService ){
   }
 
-  getAll() : Observable<any>{
-    return this.apiService.get(this.ISSUE_PATH).pipe(map(
+  getAll(page) : Observable<any>{
+    return this.apiService.get(this.ISSUE_PATH+'/pagination',page).pipe(map(
       res =>{
         if(res){
           return res;
