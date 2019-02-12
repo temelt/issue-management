@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by temelt on 4.02.2019.
@@ -47,6 +48,12 @@ public class UserServiceImpl implements UserService {
         respnose.setStat(data, Arrays.asList(modelMapper.map(data.getContent(), UserDto[].class)));
         return respnose;
     }
+
+    public List<UserDto> getAll() {
+        List<User> data = userRepository.findAll();
+        return Arrays.asList(modelMapper.map(data, UserDto[].class));
+    }
+
 
     @Override
     public UserDto getByUsername(String username) {

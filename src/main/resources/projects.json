@@ -28,5 +28,17 @@
     "_class": "com.temelt.issuemanagement.entity.Project",
     "projectCode" : "TP",
     "projectName": "Test Project"
+  },
+  {
+    "_class": "com.temelt.issuemanagement.entity.User",
+    "username" : "temelt",
+    "nameSurname": "Taner TEMEL",
+    "email":"taner.temelt@gmail.com"
+  },
+  {
+    "_class": "com.temelt.issuemanagement.entity.User",
+    "username" : "jdoe",
+    "nameSurname": "John Doe",
+    "email":"jdoe@gmail.com"
   }
 ]
