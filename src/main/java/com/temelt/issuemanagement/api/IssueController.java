@@ -1,5 +1,6 @@
 package com.temelt.issuemanagement.api;
 
+import com.temelt.issuemanagement.dto.IssueDetailDto;
 import com.temelt.issuemanagement.dto.IssueDto;
 import com.temelt.issuemanagement.service.impl.IssueServiceImpl;
 import com.temelt.issuemanagement.util.ApiPaths;
@@ -39,6 +40,13 @@ public class IssueController {
     public ResponseEntity<IssueDto> getById(@PathVariable(value = "id", required = true) Long id) {
         IssueDto issue = issueServiceImpl.getById(id);
         return ResponseEntity.ok(issue);
+    }
+
+    @GetMapping("/detail/{id}")
+    @ApiOperation(value = "Get By Id Operation", response = IssueDto.class)
+    public ResponseEntity<IssueDetailDto> getByIdWithDetails(@PathVariable(value = "id", required = true) Long id) {
+        IssueDetailDto detailDto = issueServiceImpl.getByIdWithDetails(id);
+        return ResponseEntity.ok(detailDto);
     }
 
     @PostMapping

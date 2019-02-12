@@ -1,6 +1,5 @@
 package com.temelt.issuemanagement.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +13,8 @@ import java.util.Date;
 /**
  * Created by temelt on 3.02.2019.
  */
-@Data
+@Getter
+@Setter
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
@@ -22,14 +22,14 @@ public abstract class BaseEntity implements Serializable {
     @Column(name = "created_at")
     private Date createdAt;
 
-    @Column(name = "created_by",length = 50)
+    @Column(name = "created_by", length = 50)
     private String createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    @Column(name = "updated_by",length = 50)
+    @Column(name = "updated_by", length = 50)
     private String updatedBy;
 
     @Column(name = "status")

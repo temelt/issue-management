@@ -1,6 +1,9 @@
 package com.temelt.issuemanagement.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,11 +13,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "issue_history")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class IssueHistory extends BaseEntity {
 
     @Id
@@ -25,7 +27,7 @@ public class IssueHistory extends BaseEntity {
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Issue issue;
 
-    @Column(name = "description",length = 1000)
+    @Column(name = "description", length = 1000)
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -36,7 +38,7 @@ public class IssueHistory extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private IssueStatus issueStatus;
 
-    @Column(name = "details",length = 4000)
+    @Column(name = "details", length = 4000)
     private String details;
 
     @JoinColumn(name = "assignee_user_id")

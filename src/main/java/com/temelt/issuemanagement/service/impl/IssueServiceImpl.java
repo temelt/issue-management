@@ -1,8 +1,11 @@
 package com.temelt.issuemanagement.service.impl;
 
+import com.temelt.issuemanagement.dto.IssueDetailDto;
 import com.temelt.issuemanagement.dto.IssueDto;
+import com.temelt.issuemanagement.dto.IssueHistoryDto;
 import com.temelt.issuemanagement.entity.Issue;
 import com.temelt.issuemanagement.repository.IssueRepository;
+import com.temelt.issuemanagement.service.IssueHistoryService;
 import com.temelt.issuemanagement.service.IssueService;
 import com.temelt.issuemanagement.util.TPage;
 import org.modelmapper.ModelMapper;
@@ -21,11 +24,13 @@ import java.util.List;
 public class IssueServiceImpl implements IssueService {
 
     private final IssueRepository issueRepository;
+    private final IssueHistoryService issueHistoryService;
     private final ModelMapper modelMapper;
 
-    public IssueServiceImpl(IssueRepository issueRepository, ModelMapper modelMapper) {
+    public IssueServiceImpl(IssueRepository issueRepository, IssueHistoryService issueHistoryService, ModelMapper modelMapper) {
         this.issueRepository = issueRepository;
         this.modelMapper = modelMapper;
+        this.issueHistoryService = issueHistoryService;
     }
 
     @Override
@@ -48,6 +53,14 @@ public class IssueServiceImpl implements IssueService {
     public IssueDto getById(Long id) {
         Issue issue = issueRepository.getOne(id);
         return modelMapper.map(issue, IssueDto.class);
+    }
+
+    public IssueDetailDto getByIdWithDetails(Long id) {
+        Issue issue = issueRepository.getOne(id);
+        IssueDetailDto detailDto = modelMapper.map(issue, IssueDetailDto.class);
+        List<IssueHistoryDto> issueHistoryDtos = issueHistoryService.getByIssueId(issue.getId());
+        detailDto.setIssueHistories(issueHistoryDtos);
+        return detailDto;
     }
 
     @Override
