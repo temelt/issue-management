@@ -10,7 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by temelt on 4.02.2019.
@@ -54,6 +56,11 @@ public class IssueServiceImpl implements IssueService {
         TPage<IssueDto> respnose = new TPage<IssueDto>();
         respnose.setStat(data, Arrays.asList(modelMapper.map(data.getContent(), IssueDto[].class)));
         return respnose;
+    }
+
+    public List<IssueDto> getAll() {
+        List<Issue> data = issueRepository.findAll();
+        return Arrays.asList(modelMapper.map(data, IssueDto[].class));
     }
 
     @Override

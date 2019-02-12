@@ -56,6 +56,17 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <label>{{'Project Manager'| translate}}</label>
+
+          <select formControlName="managerId" class="form-control" [ngClass]="{ 'is-invalid': f.managerId.errors }" >
+            <option *ngFor="let val of managerOptions" [value]="val.id">{{val.nameSurname}}</option>
+          </select>
+          <div *ngIf="f.managerId.errors" class="invalid-feedback">
+            <div *ngIf="f.managerId.errors.required">{{'Project Manager is required'| translate}}</div>
+          </div>
+        </div>
+
         <div class="modal-footer" >
           <button class="btn btn-light" (click)="closeAndResetModal()">{{ 'Close' | translate }}</button>
           <button class="btn btn-primary" >{{ 'Save' | translate }}</button>
