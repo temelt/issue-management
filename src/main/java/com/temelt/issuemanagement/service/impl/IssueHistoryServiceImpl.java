@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by temelt on 4.02.2019.
@@ -38,6 +39,11 @@ public class IssueHistoryServiceImpl implements IssueHistoryService {
     public IssueHistoryDto getById(Long id) {
         IssueHistory ih = issueHistoryRepository.getOne(id);
         return modelMapper.map(ih, IssueHistoryDto.class);
+    }
+
+    @Override
+    public List<IssueHistoryDto> getByIssueId(Long id) {
+        return Arrays.asList(modelMapper.map(issueHistoryRepository.getByIssueId(id), IssueHistoryDto[].class));
     }
 
     @Override

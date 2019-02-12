@@ -1,6 +1,9 @@
 package com.temelt.issuemanagement.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -9,21 +12,20 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "project")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class Project extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "project_name",length = 300)
+    @Column(name = "project_name", length = 300)
     private String projectName;
 
-    @Column(name = "project_code",length = 30)
+    @Column(name = "project_code", length = 30)
     private String projectCode;
 
     @JoinColumn(name = "manager_user_id")
