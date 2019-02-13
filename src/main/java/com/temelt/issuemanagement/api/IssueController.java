@@ -2,6 +2,7 @@ package com.temelt.issuemanagement.api;
 
 import com.temelt.issuemanagement.dto.IssueDetailDto;
 import com.temelt.issuemanagement.dto.IssueDto;
+import com.temelt.issuemanagement.entity.IssueStatus;
 import com.temelt.issuemanagement.service.impl.IssueServiceImpl;
 import com.temelt.issuemanagement.util.ApiPaths;
 import com.temelt.issuemanagement.util.TPage;
@@ -12,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by temelt on 4.02.2019.
@@ -65,5 +68,11 @@ public class IssueController {
     @ApiOperation(value = "Delete Operation", response = Boolean.class)
     public ResponseEntity<Boolean> delete(@PathVariable(value = "id", required = true) Long id) {
         return ResponseEntity.ok(issueServiceImpl.delete(id));
+    }
+
+    @GetMapping("/statuses")
+    @ApiOperation(value = "Get All Issue Statuses Operation", response = String.class, responseContainer = "List")
+    public ResponseEntity<List<IssueStatus>> getAll() {
+        return ResponseEntity.ok(Arrays.asList(IssueStatus.values()));
     }
 }

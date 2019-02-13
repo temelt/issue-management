@@ -99,4 +99,8 @@ public class ProjectServiceImpl implements ProjectService {
         return modelMapper.map(projectDb, ProjectDto.class);
     }
 
+    public List<ProjectDto> getAll() {
+        List<Project> data = projectRepository.findAll();
+        return Arrays.asList(modelMapper.map(data, ProjectDto[].class));
+    }
 }
