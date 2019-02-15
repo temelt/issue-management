@@ -95,14 +95,14 @@ export class IssueDetailComponent implements OnInit {
       issueStatus: response['issueStatus'],
       assignee_id: response['assignee']['id'],
       project_id: response['project']['id'],
-      project_manager: response['project']['manager']['nameSurname']
+      project_manager: response['project']['manager'] ? response['project']['manager']['nameSurname']: '',
     });
   }
 
   saveIssue(){
     this.issueService.updateIssue(this.issueDetailForm.value).subscribe(response=>{
-      console.log(response);
-      this.loadIssueDetails();
+      this.issueDetailForm = this.createIssueDetailFormGroup(response);
+      this.datatable_rows = response['issueHistories'];
     });
   }
 

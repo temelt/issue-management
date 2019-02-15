@@ -1,6 +1,8 @@
 package com.temelt.issuemanagement.service.impl;
 
 import com.temelt.issuemanagement.dto.IssueHistoryDto;
+import com.temelt.issuemanagement.dto.IssueUpdateDto;
+import com.temelt.issuemanagement.entity.Issue;
 import com.temelt.issuemanagement.entity.IssueHistory;
 import com.temelt.issuemanagement.repository.IssueHistoryRepository;
 import com.temelt.issuemanagement.service.IssueHistoryService;
@@ -43,7 +45,7 @@ public class IssueHistoryServiceImpl implements IssueHistoryService {
 
     @Override
     public List<IssueHistoryDto> getByIssueId(Long id) {
-        return Arrays.asList(modelMapper.map(issueHistoryRepository.getByIssueId(id), IssueHistoryDto[].class));
+        return Arrays.asList(modelMapper.map(issueHistoryRepository.getByIssueIdOrderById(id), IssueHistoryDto[].class));
     }
 
     @Override
@@ -58,6 +60,18 @@ public class IssueHistoryServiceImpl implements IssueHistoryService {
     public Boolean delete(IssueHistoryDto issueHistory) {
         issueHistoryRepository.deleteById(issueHistory.getId());
         return Boolean.TRUE;
+    }
+
+    @Override
+    public void addHistory(Long id, Issue issueDb) {
+        IssueHistory history=new IssueHistory();
+        history.setIssue(issueDb);
+        history.setAssignee(issueDb.getAssignee());
+        history.setDate(issueDb.getDate());
+        history.setDescription(issueDb.getDescription());
+        history.setDetails(issueDb.getDetails());
+        history.setIssueStatus(issueDb.getIssueStatus());
+        issueHistoryRepository.save(history);
     }
 
 }

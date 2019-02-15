@@ -61,9 +61,8 @@ public class IssueController {
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update Operation", response = IssueDto.class)
-    public ResponseEntity<IssueDto> updateProject(@PathVariable(value = "id", required = true) Long id, @Valid @RequestBody IssueUpdateDto issue) {
-        System.out.println(issue);
-        return ResponseEntity.ok(null);
+    public ResponseEntity<IssueDetailDto> updateProject(@PathVariable(value = "id", required = true) Long id, @Valid @RequestBody IssueUpdateDto issue) {
+        return ResponseEntity.ok(issueServiceImpl.update(id,issue));
     }
 
     @DeleteMapping("/{id}")
