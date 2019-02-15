@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {IssueService} from "../../../services/shared/issue.service";
 import {ProjectService} from "../../../services/shared/project.service";
@@ -12,6 +12,8 @@ import {DatePipe} from "@angular/common";
   styleUrls: ['./issue-detail.component.scss']
 })
 export class IssueDetailComponent implements OnInit {
+
+  @ViewChild('tplDateCell') tplDateCell: TemplateRef<any>;
 
   // route parameter options
   id: number;
@@ -44,9 +46,9 @@ export class IssueDetailComponent implements OnInit {
     });
 
     this.columns = [
-      {prop: 'id', name: 'No'},
+      {prop: 'id', name: 'No', maxWidth: 40},
       {prop: 'description', name: 'Description'},
-      {prop: 'date', name: 'Issue Date'},
+      {prop: 'date', name: 'Issue Date' , cellTemplate: this.tplDateCell},
       {prop: 'issueStatus', name: 'Issue Status'},
       {prop: 'assignee.nameSurname', name: 'Assignee'},
       {prop: 'issue.project.projectName', name: 'Project Name'},
