@@ -2,6 +2,7 @@ package com.temelt.issuemanagement.api;
 
 import com.temelt.issuemanagement.dto.IssueDetailDto;
 import com.temelt.issuemanagement.dto.IssueDto;
+import com.temelt.issuemanagement.dto.IssueUpdateDto;
 import com.temelt.issuemanagement.entity.IssueStatus;
 import com.temelt.issuemanagement.service.impl.IssueServiceImpl;
 import com.temelt.issuemanagement.util.ApiPaths;
@@ -60,8 +61,9 @@ public class IssueController {
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update Operation", response = IssueDto.class)
-    public ResponseEntity<IssueDto> updateProject(@PathVariable(value = "id", required = true) Long id, @Valid @RequestBody IssueDto issue) {
-        return ResponseEntity.ok(issueServiceImpl.update(id, issue));
+    public ResponseEntity<IssueDto> updateProject(@PathVariable(value = "id", required = true) Long id, @Valid @RequestBody IssueUpdateDto issue) {
+        System.out.println(issue);
+        return ResponseEntity.ok(null);
     }
 
     @DeleteMapping("/{id}")
