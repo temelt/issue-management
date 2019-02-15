@@ -4,6 +4,7 @@ import {IssueService} from "../../../services/shared/issue.service";
 import {ProjectService} from "../../../services/shared/project.service";
 import {UserService} from "../../../services/shared/user.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-issue-detail',
@@ -90,7 +91,7 @@ export class IssueDetailComponent implements OnInit {
       id: response['id'],
       description: response['description'],
       details: response['details'],
-      date: response['date'],
+      date: this.fromJsonDate(response['date']),
       issueStatus: response['issueStatus'],
       assignee_id: response['assignee']['id'],
       project_id: response['project']['id'],
@@ -103,5 +104,10 @@ export class IssueDetailComponent implements OnInit {
       console.log(response);
       this.loadIssueDetails();
     });
+  }
+
+  fromJsonDate(jDate): string {
+    const bDate: Date = new Date(jDate);
+    return bDate.toISOString().substring(0, 10);
   }
 }
