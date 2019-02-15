@@ -12,7 +12,7 @@ import java.util.List;
  * Created by temelt on 3.02.2019.
  */
 @Entity
-@Table(name = "users")
+@Table(name = "users", indexes = {@Index(name = "idx_username", columnList = "uname")})
 @Getter
 @Setter
 @NoArgsConstructor
