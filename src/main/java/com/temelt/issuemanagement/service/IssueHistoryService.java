@@ -1,6 +1,7 @@
 package com.temelt.issuemanagement.service;
 
 import com.temelt.issuemanagement.dto.IssueHistoryDto;
+import com.temelt.issuemanagement.entity.Issue;
 import com.temelt.issuemanagement.util.TPage;
 import org.springframework.data.domain.Pageable;
 
@@ -21,4 +22,5 @@ public interface IssueHistoryService {
 
     Boolean delete(IssueHistoryDto issueHistory);
 
+    void addHistory(Long id, Issue issue);
 }

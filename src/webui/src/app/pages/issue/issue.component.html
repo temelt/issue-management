@@ -23,7 +23,7 @@
     <ngx-datatable-column prop="project.manager.nameSurname" name="Project Manager" sortable="false"></ngx-datatable-column>
     <ngx-datatable-column prop="id" name="Actions" sortable="false">
       <ng-template let-value="value" ngx-datatable-cell-template>
-        <a href="/issue-detail/{{value}}">Detail</a>
+        <a [routerLink]="['issue-detail/',value]">Detail</a>
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>

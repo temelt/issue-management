@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by temelt on 4.02.2019.
@@ -33,6 +34,13 @@ public class ProjectController {
     @ApiOperation(value = "Get By Pagination Operation", response = ProjectDto.class)
     public ResponseEntity<TPage<ProjectDto>> getAllByPagination(Pageable pageable) {
         TPage<ProjectDto> data = projectServiceImpl.getAllPageable(pageable);
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping()
+    @ApiOperation(value = "Get All Operation", response = ProjectDto.class , responseContainer = "List")
+    public ResponseEntity<List<ProjectDto>> getAll() {
+        List<ProjectDto> data = projectServiceImpl.getAll();
         return ResponseEntity.ok(data);
     }
 

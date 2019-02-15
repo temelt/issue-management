@@ -3,15 +3,21 @@ package com.temelt.issuemanagement.service.impl;
 import com.temelt.issuemanagement.dto.IssueDetailDto;
 import com.temelt.issuemanagement.dto.IssueDto;
 import com.temelt.issuemanagement.dto.IssueHistoryDto;
+import com.temelt.issuemanagement.dto.IssueUpdateDto;
 import com.temelt.issuemanagement.entity.Issue;
+import com.temelt.issuemanagement.entity.User;
 import com.temelt.issuemanagement.repository.IssueRepository;
+import com.temelt.issuemanagement.repository.ProjectRepository;
+import com.temelt.issuemanagement.repository.UserRepository;
 import com.temelt.issuemanagement.service.IssueHistoryService;
 import com.temelt.issuemanagement.service.IssueService;
+import com.temelt.issuemanagement.service.ProjectService;
 import com.temelt.issuemanagement.util.TPage;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,13 +30,17 @@ import java.util.List;
 public class IssueServiceImpl implements IssueService {
 
     private final IssueRepository issueRepository;
+    private final UserRepository userRepository;
+    private final ProjectRepository projectRepository;
     private final IssueHistoryService issueHistoryService;
     private final ModelMapper modelMapper;
 
-    public IssueServiceImpl(IssueRepository issueRepository, IssueHistoryService issueHistoryService, ModelMapper modelMapper) {
+    public IssueServiceImpl(IssueRepository issueRepository,ProjectRepository projectRepository, UserRepository userRepository, IssueHistoryService issueHistoryService, ModelMapper modelMapper) {
         this.issueRepository = issueRepository;
         this.modelMapper = modelMapper;
         this.issueHistoryService = issueHistoryService;
+        this.userRepository =userRepository;
+        this.projectRepository=projectRepository;
     }
 
     @Override
@@ -47,6 +57,22 @@ public class IssueServiceImpl implements IssueService {
 
         issue.setId(issueEntity.getId());
         return issue;
+    }
+
+    @Transactional
+    public IssueDetailDto update(Long id, IssueUpdateDto issue) {
+        Issue issueDb = issueRepository.getOne(id);
+        User user = userRepository.getOne(issue.getAssignee_id());
+        issueHistoryService.addHistory(id,issueDb);
+
+        issueDb.setAssignee(user);
+        issueDb.setDate(issue.getDate());
+        issueDb.setDescription(issue.getDescription());
+        issueDb.setDetails(issue.getDetails());
+        issueDb.setIssueStatus(issue.getIssueStatus());
+        issueDb.setProject(projectRepository.getOne(issue.getProject_id()));
+        issueRepository.save(issueDb);
+        return getByIdWithDetails(id);
     }
 
     @Override

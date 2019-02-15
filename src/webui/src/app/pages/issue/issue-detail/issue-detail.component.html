@@ -1,0 +1,94 @@
+<div class="content-wrapper">
+  <form *ngIf="issueDetailForm" [formGroup]="issueDetailForm" (ngSubmit)="saveIssue()">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="badge">Description</label>
+          <input type="text" formControlName="description" class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="badge">Issue Status</label>
+          <select formControlName="issueStatus" class="form-control" >
+            <option *ngFor="let val of issueStatusOptions" [value]="val">{{val}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="badge">Issue Date</label>
+          <input type="date"  formControlName="date" class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="badge">Assignee</label>
+          <select formControlName="assignee_id" class="form-control" >
+            <option *ngFor="let val of assigneeOptions" [value]="val.id">{{val.nameSurname}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="badge">Project</label>
+          <select formControlName="project_id" class="form-control" >
+            <option *ngFor="let val of projectOptions" [value]="val.id"> {{val.projectName}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="badge">Project Manager</label>
+          <input readonly type="text" formControlName="project_manager" class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <label class="badge">Details</label>
+        <textarea class="form-control" rows="3" aria-multiline="true" formControlName="details" class="form-control"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-6 col-md-6"></div>
+      <div class="col-lg-6 col-md-6">
+        <div class="pull-right">
+          <button type="submit" name="submit" class="btn btn-block btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+  </form>
+  <div>
+    <ngx-datatable
+      class="bootstrap"
+      [rows]="datatable_rows"
+      [columns]="columns"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="50">
+    </ngx-datatable>
+
+    <ng-template #tplDateCell let-row="row" let-value="value">
+      {{value | date: 'dd/MM/yyyy'}}
+    </ng-template>
+  </div>
+</div>
