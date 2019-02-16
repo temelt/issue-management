@@ -8,10 +8,10 @@
           <i class="fa fa-user"></i>
         </a>
         <div *dropdownMenu class="dropdown-menu  dropdown-menu-right" role="menu">
-          <a class="dropdown-item">My Account</a>
+          <a class="dropdown-item">{{activeUser.username}}</a>
           <a class="dropdown-item">Account Settings</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/auth/login']">Logout</a>
+          <a class="dropdown-item" [routerLink]="['/login']">Logout</a>
         </div>
       </li>
 
