@@ -95,9 +95,9 @@ export class IssueDetailComponent implements OnInit {
       details: response['details'],
       date: this.fromJsonDate(response['date']),
       issueStatus: response['issueStatus'],
-      assignee_id: response['assignee']['id'],
-      project_id: response['project']['id'],
-      project_manager: response['project']['manager'] ? response['project']['manager']['nameSurname']: '',
+      assignee_id: response['assignee']? response['assignee']['id'] : '',
+      project_id: response['project'] ? response['project']['id'] : '',
+      project_manager: response['project'] && response['project']['manager'] ? response['project']['manager']['nameSurname']: '',
     });
   }
 

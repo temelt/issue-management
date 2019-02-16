@@ -5,6 +5,7 @@ import com.temelt.issuemanagement.dto.IssueDto;
 import com.temelt.issuemanagement.dto.IssueHistoryDto;
 import com.temelt.issuemanagement.dto.IssueUpdateDto;
 import com.temelt.issuemanagement.entity.Issue;
+import com.temelt.issuemanagement.entity.IssueStatus;
 import com.temelt.issuemanagement.entity.User;
 import com.temelt.issuemanagement.repository.IssueRepository;
 import com.temelt.issuemanagement.repository.ProjectRepository;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,13 +48,13 @@ public class IssueServiceImpl implements IssueService {
     @Override
     public IssueDto save(IssueDto issue) {
         // Bussiness Logic
+        issue.setDate(new Date());
+        issue.setIssueStatus(IssueStatus.OPEN);
 
-        if (issue.getDate() == null) {
-            throw new IllegalArgumentException("Issue Date cannot be null");
-        }
 
         Issue issueEntity = modelMapper.map(issue, Issue.class);
 
+        issueEntity.setProject(projectRepository.getOne(issue.getProjectId()));
         issueEntity = issueRepository.save(issueEntity);
 
         issue.setId(issueEntity.getId());
