@@ -29,7 +29,7 @@
     "file-saver": "^2.0.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.13",
     "material-design-icons-iconfont": "^4.0.4",
     "ngx-bootstrap": "^3.0.0",
     "ngx-loading": "^3.0.1",
