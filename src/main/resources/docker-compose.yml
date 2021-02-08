@@ -1,0 +1,36 @@
+version: '3.1'
+
+networks:
+  haydikodlayalim:
+
+services:
+  db:
+    image: postgres
+    container_name: hk-pg-server
+    hostname: hk-pg-server
+    networks:
+      - haydikodlayalim
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+  backend:
+    image: hk-backend
+    container_name: hk-backend-server
+    hostname: hk-backend-server
+    ports:
+      - '8100:8100'
+    restart: always
+    networks:
+      - haydikodlayalim
+
+  frontend:
+    image: hk-frontend
+    container_name: hk-frontend-server
+    hostname: hk-frontend-server
+    ports:
+      - '8200:80'
+    restart: always
+    networks:
+      - haydikodlayalim
